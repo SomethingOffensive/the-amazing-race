@@ -8,8 +8,14 @@
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.*;
+
+
 public class GameObject
 {
+    //registry data
+    private static ArrayList<GameObject> objects;
+    
     // xy position of object
     protected float x;
     protected float y;
@@ -20,7 +26,17 @@ public class GameObject
     
     //image to represent object
     private Image image;
-
+    
+    public static void add(GameObject obj) {
+        objects.add(obj);
+    }
+    
+    public static void TickAll(float deltaTime) {
+        for (GameObject o : objects) {
+            o.tick(deltaTime);
+        }
+    }
+    
     /**
      * Constructor for objects of class GameObject
      */
@@ -31,6 +47,10 @@ public class GameObject
         this.y = y;
         
         this.image = image;
+        GameObject.add(this);
     }
-
+    
+    private void tick(float deltaTime) {
+    
+    }
 }
