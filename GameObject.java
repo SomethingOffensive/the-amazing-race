@@ -50,7 +50,8 @@ public class GameObject
         GameObject.add(this);
     }
     
-    private void tick(float deltaTime) {
-    
+    protected void tick(float deltaTime) {
+        x += velx;
+        y += vely;
     }
 }
