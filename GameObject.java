@@ -9,9 +9,10 @@
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.*;
+import javax.swing.JPanel;
 
 
-public class GameObject
+public class GameObject extends JPanel
 {
     //registry data
     private static ArrayList<GameObject> objects;
@@ -53,5 +54,9 @@ public class GameObject
     protected void tick(float deltaTime) {
         x += velx;
         y += vely;
+    }
+    
+    private void drawObject() {
+        
     }
 }
