@@ -41,6 +41,8 @@ public abstract class Board extends JPanel
               oldTimeSinceLastTick = timeSinceLastTick;
               
               GameObject.TickAll(deltaTime);
+              
+              repaint(); //do this last
         }
     }
     

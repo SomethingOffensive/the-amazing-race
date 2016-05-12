@@ -12,10 +12,13 @@ import java.util.*;
 import javax.swing.JPanel;
 
 
-public class GameObject extends JPanel
+public class GameObject
 {
-    //registry data
+    //keep track of all active GameObject instances
     private static ArrayList<GameObject> objects;
+    
+    private int length;
+    private int width;
     
     // xy position of object
     protected float x;
@@ -38,9 +41,9 @@ public class GameObject extends JPanel
         }
     }
     
-    public static void DrawAll(Graphics g) {
+    public static void DrawAll(Graphics g, JPanel pane) {
         for (GameObject o : objects) {
-            o.drawObject(g);
+            o.drawObject(g, pane);
         }
     }
     
@@ -51,11 +54,14 @@ public class GameObject extends JPanel
     /**
      * Constructor for objects of class GameObject
      */
-    public GameObject(Image image, float x, float y)
+    public GameObject(Image image, float x, float y, int l, int w)
     {
         // initialise instance variables
         this.x = x;
         this.y = y;
+        
+        length = l;
+        width = w;
         
         this.image = image;
         GameObject.add(this);
@@ -66,7 +72,14 @@ public class GameObject extends JPanel
         y += vely;
     }
     
-    private void drawObject(Graphics g) {
-    
+    private void drawObject(Graphics g, JPanel pane) {
+        int x, y;
+        
+        //we round our floats to drawable int coordinates instead of casting to avoid truncation
+        x = Math.round(this.x);
+        y = Math.round(this.y);
+        
+        g.drawImage(image, x, y, length, width, pane);
     }
+   
 }
