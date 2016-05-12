@@ -28,7 +28,7 @@ public class GameObject extends JPanel
     //image to represent object
     private Image image;
     
-    public static void add(GameObject obj) {
+    private static void add(GameObject obj) {
         objects.add(obj);
     }
     
@@ -36,6 +36,16 @@ public class GameObject extends JPanel
         for (GameObject o : objects) {
             o.tick(deltaTime);
         }
+    }
+    
+    public static void DrawAll(Graphics g) {
+        for (GameObject o : objects) {
+            o.drawObject(g);
+        }
+    }
+    
+    public static ArrayList<GameObject> AllGameObjects() {
+        return objects;
     }
     
     /**
@@ -56,7 +66,7 @@ public class GameObject extends JPanel
         y += vely;
     }
     
-    private void drawObject() {
-        
+    private void drawObject(Graphics g) {
+    
     }
 }

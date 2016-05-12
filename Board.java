@@ -8,11 +8,20 @@ import javax.swing.Timer;
 
 public abstract class Board extends JPanel
 {
+    private Graphics gfx;
     private GameObject player;
     private Image background;
     private int currentLevel;
+    private boolean playing;
     
-    public Board() {       
+    private float timeSinceLastTick;
+    private float oldTimeSinceLastTick;
+    private float deltaTime;
+    
+    public Board() {
+        timeSinceLastTick = System.nanoTime() / 1000;
+        oldTimeSinceLastTick = 0;
+        deltaTime = 1;
         initBoard();
     }
     
@@ -26,6 +35,22 @@ public abstract class Board extends JPanel
     
     private void loop() {
         
+        while(playing) {
+              timeSinceLastTick = System.nanoTime() / 1000;
+              deltaTime = timeSinceLastTick - oldTimeSinceLastTick;
+              oldTimeSinceLastTick = timeSinceLastTick;
+              
+              GameObject.TickAll(deltaTime);
+        }
+    }
+    
+    @Override
+    public void paintComponent(Graphics g) {
+        doDrawing(g);
+    }
+    
+    private void doDrawing(Graphics g) {
+        GameObject.DrawAll(g);
     }
     
     private void playerWin(){
