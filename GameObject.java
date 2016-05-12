@@ -6,8 +6,7 @@
  * @version 1.0
  */
 
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 import java.util.*;
 import javax.swing.JPanel;
 
@@ -54,14 +53,14 @@ public class GameObject
     /**
      * Constructor for objects of class GameObject
      */
-    public GameObject(Image image, float x, float y, int l, int w)
+    public GameObject(Image image, float x, float y, int w, int l)
     {
         // initialise instance variables
         this.x = x;
         this.y = y;
         
-        length = l;
         width = w;
+        length = l;
         
         this.image = image;
         GameObject.add(this);
@@ -81,5 +80,13 @@ public class GameObject
         
         g.drawImage(image, x, y, length, width, pane);
     }
-   
+    
+    public Rectangle getBounds() {
+        
+        // round instead of casting to prevent truncation, we DEFINITELY don't want truncated bounds
+        int x = Math.round(this.x);
+        int y = Math.round(this.y);
+        
+        return new Rectangle(x, y, width, length);
+    }
 }
