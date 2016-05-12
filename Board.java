@@ -1,14 +1,9 @@
-import java.awt.Color;
-import java.awt.Image;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Toolkit;
+import java.awt.*;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public abstract class Board extends JPanel
 {
-    private Graphics gfx;
     private GameObject player;
     private Image background;
     private int currentLevel;
@@ -52,7 +47,7 @@ public abstract class Board extends JPanel
     }
     
     private void doDrawing(Graphics g) {
-        GameObject.DrawAll(g);
+        GameObject.DrawAll(g, this);
     }
     
     private void playerWin(){
