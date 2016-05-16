@@ -22,9 +22,9 @@ public class Projectile extends GameObject
     /**
      * Constructor for objects of class Projectile
      */
-    public Projectile(Image image, float x, float y, Direction d)
+    public Projectile(Image image, float x, float y, int w, int l, Direction d)
     {
-       super(image, x, y);
+       super(image, x, y, w, l);
        target = new Point(0,0);
        targeting = false;
        direction = d;
