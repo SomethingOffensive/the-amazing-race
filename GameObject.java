@@ -16,8 +16,8 @@ public class GameObject
     //keep track of all active GameObject instances
     private static ArrayList<GameObject> objects;
     
-    private int length;
-    private int width;
+    protected int length;
+    protected int width;
     
     // xy position of object
     protected float x;
@@ -28,27 +28,7 @@ public class GameObject
     protected float vely;
     
     //image to represent object
-    private Image image;
-    
-    private static void add(GameObject obj) {
-        objects.add(obj);
-    }
-    
-    public static void TickAll(float deltaTime) {
-        for (GameObject o : objects) {
-            o.tick(deltaTime);
-        }
-    }
-    
-    public static void DrawAll(Graphics g, JPanel pane) {
-        for (GameObject o : objects) {
-            o.drawObject(g, pane);
-        }
-    }
-    
-    public static ArrayList<GameObject> AllGameObjects() {
-        return objects;
-    }
+    protected Image image;
     
     /**
      * Constructor for objects of class GameObject
@@ -63,7 +43,8 @@ public class GameObject
         length = l;
         
         this.image = image;
-        GameObject.add(this);
+        
+        Registry.register(this);
     }
     
     protected void tick(float deltaTime) {
@@ -71,7 +52,7 @@ public class GameObject
         y += vely;
     }
     
-    private void drawObject(Graphics g, JPanel pane) {
+    public void drawObject(Graphics g, JPanel pane) {
         int x, y;
         
         //we round our floats to drawable int coordinates instead of casting to avoid truncation

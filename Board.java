@@ -17,7 +17,7 @@ public abstract class Board extends JPanel
     private float deltaTime;
     
     public Board() {
-        timeSinceLastTick = System.nanoTime() / 1000;
+        timeSinceLastTick = System.currentTimeMillis() / 1000;
         oldTimeSinceLastTick = 0;
         deltaTime = 1;
         initBoard();
@@ -38,7 +38,7 @@ public abstract class Board extends JPanel
               deltaTime = timeSinceLastTick - oldTimeSinceLastTick;
               oldTimeSinceLastTick = timeSinceLastTick;
               
-              GameObject.TickAll(deltaTime);
+              Registry.tickAll(deltaTime);
               
               repaint(); //do this last
         }
@@ -50,7 +50,7 @@ public abstract class Board extends JPanel
     }
     
     private void doDrawing(Graphics g) {
-        GameObject.DrawAll(g, this);
+        Registry.drawAll(g, this);
     }
     
     private void playerWin(){
