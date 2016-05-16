@@ -1,17 +1,14 @@
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.net.*;
-import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public abstract class Board extends JPanel
 {
     private GameObject player;
-    private BufferedImage background;
+    private Image background;
     private int currentLevel;
     private boolean playing;
-    private String boardName;
+    
     private float timeSinceLastTick;
     private float oldTimeSinceLastTick;
     private float deltaTime;
@@ -23,16 +20,16 @@ public abstract class Board extends JPanel
         initBoard();
     }
     
-    private void setBackground(BufferedImage board) {
+    private void setBackground(Image board) {
         background = board;
     }
     
-    public void initBoard() {
+    private void initBoard() {
         setBackground(background);      
     }
     
-    private void loop() 
-    {        
+    private void loop() {
+        
         while(playing) {
               timeSinceLastTick = System.nanoTime() / 1000;
               deltaTime = timeSinceLastTick - oldTimeSinceLastTick;
