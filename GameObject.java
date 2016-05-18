@@ -23,7 +23,8 @@ public class GameObject
     protected float x;
     protected float y;
     
-    //xy velocity of object
+    //velocity of object
+    protected float velocity;
     protected float velx;
     protected float vely;
     
@@ -68,6 +69,12 @@ public class GameObject
         int x = Math.round(this.x);
         int y = Math.round(this.y);
         
+        //truncated bounds are for truncating clowns
+        
         return new Rectangle(x, y, width, length);
+    }
+    
+    public void setVelocity(float v) {
+        velocity = v;
     }
 }

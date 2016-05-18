@@ -16,8 +16,10 @@ public class Projectile extends GameObject
     private Point target;
     private GameObject targetObj;
     private boolean targeting;
-    
+    private boolean first;
     private Direction direction;
+    
+    private double angle;
     
     /**
      * Constructor for objects of class Projectile
@@ -28,6 +30,8 @@ public class Projectile extends GameObject
        target = new Point(0,0);
        targeting = false;
        direction = d;
+       first = true;
+       calculateVelocity();
     }
     
     public void setTarget(float x, float y) {
@@ -41,8 +45,59 @@ public class Projectile extends GameObject
         targeting = true;
     }
     
+    public void abortTarget() {
+        targeting = false;
+    }
     private void calculateVelocity() {
-        // make velocity vector intercept target
+
+        if (first) {
+            first = false;
+            
+            switch (direction) {
+                
+                case UP:
+                    velx = 0;
+                    vely = velocity;
+                    break;
+                    
+                case DOWN:
+                
+                    velx = 0;
+                    vely = velocity * -1;
+                    break;
+                    
+                case LEFT:
+                    velx = velocity * -1;
+                    vely = 0;
+                    break;
+                    
+                case RIGHT:
+                    velx = velocity;
+                    vely = 0;
+                    break;
+            }
+            
+        }
+        
+        else if (!first) {
+            
+            float dx = x - target.x;
+            float dy = y - target.y;
+            
+            angle = Math.atan(dy/dx);
+            velx = (float)Math.cos(angle) * velocity;
+            vely = (float)Math.sin(angle) * velocity;
+            
+            if (target.x < this.x) {
+                velx = velx * -1;
+            }
+            
+            if (target.y < this.y) {
+                vely = vely * -1;
+            }
+            
+        }
+        
     }
     
     protected void tick(float deltaTime) {
