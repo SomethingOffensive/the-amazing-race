@@ -5,6 +5,7 @@ import java.net.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.io.File; 
+import java.awt.Toolkit.*;
 
 public class Level_1 extends Board 
 {
@@ -19,8 +20,13 @@ public class Level_1 extends Board
         
         BufferedImage background = loadImage(boardFileName); 
         setBackground(background);
+        
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double width = screenSize.getWidth();
+        double height = screenSize.getHeight();
+        
         super.doDrawing(g);
-        g.drawImage(0,0,100,100,this);
+        g.drawImage(0,0,width,height,this);
        
         System.out.println(boardFileName); // TEST - to be removed
         
