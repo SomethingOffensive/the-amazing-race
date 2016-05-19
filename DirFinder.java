@@ -10,7 +10,25 @@ public class DirFinder
         return directory;
     }
     
-    public static String findDir(String imgName)
+    public static String findDir(String folderName)
+    {
+        File file = new File("");
+        String directory = file.getAbsolutePath();
+        directory += ("\\" + folderName);
+        
+        return directory;
+    }
+    
+    public static String findDir(String folderName, String fileName)
+    {
+        File file = new File("");
+        String directory = file.getAbsolutePath();
+        directory += ("\\" + folderName + "\\" + fileName);
+        
+        return directory;
+    }    
+    
+    public static String findImgDir(String imgName)
     {
         File file = new File("");
         String directory = file.getAbsolutePath();
