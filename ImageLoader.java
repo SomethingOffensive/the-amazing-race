@@ -5,9 +5,10 @@ import javax.imageio.ImageIO;
 
 public class ImageLoader 
 {
-  public static BufferedImage loadImage(String imgDir) 
+  public static BufferedImage loadImage(String imgName) 
   {
     
+    imgDir = findImgDir(imgName);
     BufferedImage img = null;
     
     	try {
