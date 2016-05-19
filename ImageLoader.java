@@ -5,13 +5,22 @@ import javax.imageio.ImageIO;
 
 public class ImageLoader 
 {
-  public BufferedImage loadImage(String imgDir) {
+  public static BufferedImage loadImage(String imgDir) 
+  {
+    
     BufferedImage img = null;
-	try {
-    img = ImageIO.read(new File(imgDir)); } 	
+    
+    	try {
+	  img = ImageIO.read(new File(imgDir)); 
+	 } 	
     
     catch (IOException e) {
      }
+    
+    if (img == null) { 
+      System.out.println(imgDir + " failed to load."); 
+    }
+    
     return img;
   }
 }
