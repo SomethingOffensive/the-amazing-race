@@ -1,15 +1,17 @@
-import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.*;
-import java.net.*;
+import java.io.File;
+import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.*;
 
-public class ImageLoader
+public class ImageLoader 
 {
-    public BufferedImage loadImage(String fileName)
-    {
-        BufferedImage image = null;
-
-    }    
+  public BufferedImage loadImage(String imgDir) {
+    BufferedImage img = null;
+	try {
+    img = ImageIO.read(new File(imgDir)); } 	
+    
+    catch (IOException e) {
+     }
+    return img;
+  }
 }
