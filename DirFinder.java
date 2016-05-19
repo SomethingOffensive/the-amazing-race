@@ -33,6 +33,7 @@ public class DirFinder
         File file = new File("");
         String directory = file.getAbsolutePath();
         directory += "\\img\\" + imgName;
+        
         return directory;
     }
 }
