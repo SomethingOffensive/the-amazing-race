@@ -8,7 +8,7 @@ public class ImageLoader
   public static BufferedImage loadImage(String imgName) 
   {
     
-    imgDir = findImgDir(imgName);
+    String imgDir = DirFinder.findImgDir(imgName);
     BufferedImage img = null;
     
     	try {
