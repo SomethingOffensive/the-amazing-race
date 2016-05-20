@@ -7,12 +7,12 @@ public abstract class Board extends JPanel
     private GameObject player;
     private BufferedImage background;
     private int currentLevel;
-    private boolean playing;
-    private boolean didWin;
-    private String boardName;
-    private float timeSinceLastTick;
-    private float oldTimeSinceLastTick;
-    private float deltaTime;
+    protected boolean playing;
+    protected boolean didWin;
+    protected String boardName;
+    protected float timeSinceLastTick;
+    protected float oldTimeSinceLastTick;
+    protected float deltaTime;
     
     public Board() {
         timeSinceLastTick = System.currentTimeMillis() / 1000;
@@ -25,7 +25,7 @@ public abstract class Board extends JPanel
         background = board;
     }
     
-    private void initBoard() {
+    protected void initBoard() {
         setBackground(background);      
     }
     
@@ -39,6 +39,7 @@ public abstract class Board extends JPanel
             playerLose();
         }
     }
+    
     protected void loop() 
     {        
         while(playing) {

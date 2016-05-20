@@ -32,5 +32,25 @@ public class Level_1 extends Board
         
         super.doDrawing(g);
         }
+   
+    protected void loop() 
+    {        
+        while(playing) {
+              timeSinceLastTick = System.nanoTime() / 1000;
+              deltaTime = timeSinceLastTick - oldTimeSinceLastTick;
+              oldTimeSinceLastTick = timeSinceLastTick;
+              
+              
+              
+              Registry.tickAll(deltaTime);
+              
+              repaint(); //do this last
+        }
+    } 
+    
+    protected void initBoard() {
+        super.initBoard();
+        GameObject test = new GameObject(ImageLoader.loadImage("kanye.png"), (float)width/2, (float)height/2, 20, 20);
     }
+}
 
