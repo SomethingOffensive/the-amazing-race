@@ -12,6 +12,7 @@ public class Game
     public static void main()
     {
         level1 = new Level_1();
+        level1.doLevel();
     }
     
     public static void doLevel(Board level){
