@@ -3,6 +3,7 @@ public class Game
     public static int score;
     public static Board[] levels;
     public static Board level1;
+    
     public Game()
     {
         
