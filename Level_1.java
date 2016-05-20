@@ -50,7 +50,7 @@ public class Level_1 extends Board
     
     protected void initBoard() {
         super.initBoard();
-        GameObject test = new GameObject(ImageLoader.loadImage("kanye.png"), (float)width/2, (float)height/2, 20, 20);
+        Player test = new Player(ImageLoader.loadImage("kanye.png"), (float)width/2, (float)height/2, 20, 20);
     }
 }
 
