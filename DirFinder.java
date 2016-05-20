@@ -13,8 +13,7 @@ public class DirFinder
     public static String findDir(String folderName)
     {
         File file = new File("");
-        String directory = file.getAbsolutePath();
-        directory += ("\\" + folderName);
+        String directory = (file.getAbsolutePath() +  "\\" + folderName );
         
         return directory;
     }
@@ -22,8 +21,7 @@ public class DirFinder
     public static String findDir(String folderName, String fileName)
     {
         File file = new File("");
-        String directory = file.getAbsolutePath();
-        directory += ("\\" + folderName + "\\" + fileName);
+        String directory = (file.getAbsolutePath() +  "\\" + folderName + "\\" + fileName);
         
         return directory;
     }    
@@ -31,8 +29,7 @@ public class DirFinder
     public static String findImgDir(String imgName)
     {
         File file = new File("");
-        String directory = file.getAbsolutePath();
-        directory += ("\\img\\" + imgName);
+        String directory = (file.getAbsolutePath() +  "\\img\\" + imgName);
         
         return directory;
     }

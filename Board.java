@@ -1,8 +1,5 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.*;
-import java.net.*;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public abstract class Board extends JPanel
@@ -10,28 +7,40 @@ public abstract class Board extends JPanel
     private GameObject player;
     private BufferedImage background;
     private int currentLevel;
-    private boolean playing;
-    private String boardName;
-    private float timeSinceLastTick;
-    private float oldTimeSinceLastTick;
-    private float deltaTime;
+    protected boolean playing;
+    protected boolean didWin;
+    protected String boardName;
+    protected float timeSinceLastTick;
+    protected float oldTimeSinceLastTick;
+    protected float deltaTime;
     
     public Board() {
         timeSinceLastTick = System.currentTimeMillis() / 1000;
         oldTimeSinceLastTick = 0;
         deltaTime = 1;
-        initBoard();
+        playing = true;
     }
     
-    private void setBackground(BufferedImage board) {
+    protected void setBackground(BufferedImage board) {
         background = board;
     }
     
-    public void initBoard() {
+    protected void initBoard() {
         setBackground(background);      
     }
     
-    private void loop() 
+    public void doLevel() {
+        initBoard();
+        loop();
+        if (didWin) {
+            playerWin();
+        }
+        else {
+            playerLose();
+        }
+    }
+    
+    protected void loop() 
     {        
         while(playing) {
               timeSinceLastTick = System.nanoTime() / 1000;
@@ -49,19 +58,19 @@ public abstract class Board extends JPanel
         doDrawing(g);
     }
     
-    private void doDrawing(Graphics g) {
+    protected void doDrawing(Graphics g) {
         Registry.drawAll(g, this);
     }
     
-    private void playerWin(){
+    protected void playerWin(){
         
     }
     
-    private void playerLose() { 
+    protected void playerLose() { 
         
     }
     
-    private void endLevel(int score) {
+    protected void endLevel(int score) {
         
     }
 }

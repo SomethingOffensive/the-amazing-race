@@ -1,37 +1,56 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.*;
-import java.net.*;
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.io.File; 
-import java.awt.Toolkit.*;
 
 public class Level_1 extends Board 
 {
+    private String boardFileName = "placeholder.jpg";
+    private double width;
+    private double height;
     public Level_1()
     {
-        initBoard();
+        super();
+        
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        width = screenSize.getWidth();
+        height = screenSize.getHeight();
+        setPreferredSize(screenSize);
+    }
+    
+    @Override
+    public void paintComponent(Graphics g) {
+        doDrawing(g);
     }
     
     public void doDrawing(Graphics g)
     {
-        String boardFileName = DirFinder.findDir("placeholder.jpg");	
-        
-        BufferedImage background = loadImage(boardFileName); 
-        setBackground(background);
+        BufferedImage background = ImageLoader.loadImage(boardFileName); 
         
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double width = screenSize.getWidth();
-        double height = screenSize.getHeight();
+
+        
+        g.drawImage(background,0,0,(int)width,(int)height,this);
         
         super.doDrawing(g);
-        g.drawImage(0,0,width,height,this);
-       
-        System.out.println(boardFileName); // TEST - to be removed
-        
-        if (background != null) {
-            System.out.println("Image Loaded."); // Also test
         }
+   
+    protected void loop() 
+    {        
+        while(playing) {
+              timeSinceLastTick = System.nanoTime() / 1000;
+              deltaTime = timeSinceLastTick - oldTimeSinceLastTick;
+              oldTimeSinceLastTick = timeSinceLastTick;
+              
+              
+              
+              Registry.tickAll(deltaTime);
+              
+              repaint(); //do this last
+        }
+    } 
+    
+    protected void initBoard() {
+        super.initBoard();
+        Player test = new Player(ImageLoader.loadImage("kanye.png"), (float)width/2, (float)height/2, 20, 20);
     }
 }
+
