@@ -11,7 +11,6 @@ import java.util.*;
 import javax.swing.JPanel;
 
 
-
 public class GameObject
 {
     //keep track of all active GameObject instances

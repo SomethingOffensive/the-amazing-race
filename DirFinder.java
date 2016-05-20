@@ -31,7 +31,8 @@ public class DirFinder
     public static String findImgDir(String imgName)
     {
         File file = new File("");
-        String directory = (file.getAbsolutePath() + "\\img" + "\\" + imgName);
+        String directory = file.getAbsolutePath();
+        directory += ("\\img\\" + imgName);
         
         return directory;
     }
