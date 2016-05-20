@@ -11,22 +11,21 @@ public class Level_1 extends Board
 {
     public Level_1()
     {
-        initBoard();
+        super();
     }
     
     public void doDrawing(Graphics g)
     {
-        String boardFileName = DirFinder.findDir("placeholder.jpg");	
+        String boardFileName = DirFinder.findDir("placeholder.jpg");    
         
-        BufferedImage background = loadImage(boardFileName); 
-        setBackground(background);
+        BufferedImage background = ImageLoader.loadImage(boardFileName); 
         
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double width = screenSize.getWidth();
         double height = screenSize.getHeight();
         
         super.doDrawing(g);
-        g.drawImage(0,0,width,height,this);
+        g.drawImage(background,0,0,(int)width,(int)height,this);
        
         System.out.println(boardFileName); // TEST - to be removed
         
