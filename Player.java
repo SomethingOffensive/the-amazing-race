@@ -17,7 +17,7 @@ public class Player extends GameObject {
   
   }
   
-  public tick(float deltaTime) {
+  public void tick(float deltaTime) {
     updateVelocity();
     super.tick(deltaTime);
     
@@ -26,3 +26,4 @@ public class Player extends GameObject {
   private void updateVelocity() {
   
   }
+}
