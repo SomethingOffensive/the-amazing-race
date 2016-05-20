@@ -1,14 +1,7 @@
-
-/**
- * Write a description of class Registry here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-
 import java.util.*;
 import java.awt.*;
 import javax.swing.*;
+
 public class Registry
 {
     // instance variables - replace the example below with your own
