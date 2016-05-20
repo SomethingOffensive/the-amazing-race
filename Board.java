@@ -18,6 +18,7 @@ public abstract class Board extends JPanel
         timeSinceLastTick = System.currentTimeMillis() / 1000;
         oldTimeSinceLastTick = 0;
         deltaTime = 1;
+        playing = true;
     }
     
     protected void setBackground(BufferedImage board) {

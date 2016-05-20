@@ -16,6 +16,11 @@ public class Level_1 extends Board
         setPreferredSize(screenSize);
     }
     
+    @Override
+    public void paintComponent(Graphics g) {
+        doDrawing(g);
+    }
+    
     public void doDrawing(Graphics g)
     {
         BufferedImage background = ImageLoader.loadImage(boardFileName); 
