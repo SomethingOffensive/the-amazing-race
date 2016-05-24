@@ -49,8 +49,8 @@ public class GameObject
     }
     
     protected void tick(float deltaTime) {
-        x += velx;
-        y += vely;
+        x += velx * deltaTime;
+        y += vely * deltaTime;
     }
     
     public void drawObject(Graphics g, JPanel pane) {

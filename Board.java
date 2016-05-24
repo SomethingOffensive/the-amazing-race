@@ -1,15 +1,20 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
+import java.awt.event.*;
 
 public abstract class Board extends JPanel
 {
-    private GameObject player;
+    protected Player player;
+    
     private BufferedImage background;
+    
     private int currentLevel;
     protected boolean playing;
     protected boolean didWin;
+    
     protected String boardName;
+    
     protected float timeSinceLastTick;
     protected float oldTimeSinceLastTick;
     protected float deltaTime;
@@ -26,7 +31,7 @@ public abstract class Board extends JPanel
     }
     
     protected void initBoard() {
-        setBackground(background);      
+        setBackground(background);
     }
     
     public void doLevel() {
@@ -43,7 +48,7 @@ public abstract class Board extends JPanel
     protected void loop() 
     {        
         while(playing) {
-              timeSinceLastTick = System.nanoTime() / 1000;
+              timeSinceLastTick = System.currentTimeMillis() / 1000;
               deltaTime = timeSinceLastTick - oldTimeSinceLastTick;
               oldTimeSinceLastTick = timeSinceLastTick;
               
@@ -72,5 +77,17 @@ public abstract class Board extends JPanel
     
     protected void endLevel(int score) {
         
+    }
+    
+    public void keyReleased(KeyEvent k) {
+        player.keyReleased(k);
+    }
+        
+    public void keyPressed(KeyEvent k) {
+        player.keyPressed(k);
+    }
+    
+    public void keyTyped(KeyEvent k) {
+    
     }
 }

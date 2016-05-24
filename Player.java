@@ -3,49 +3,69 @@ import java.util.*;
 import javax.swing.JPanel;
 import java.awt.event.*;
 
-public class Player extends GameObject implements MouseListener, KeyListener
+public class Player extends GameObject
 {
+    private boolean isMovingLeft, isMovingRight, isMovingUp, isMovingDown;
     public Player(Image image, float x, float y, int w, int l)
     {
         super(image, x, y, w, l);
     }       
     
+    public void tick(float deltaTime) {
+            if (isMovingUp) {
+                vely = velocity;
+            }
+            
+            if (isMovingLeft) {
+                velx = velocity * -1;
+            }
+            
+            if (isMovingDown){
+                vely = velocity * -1;
+            }
+            
+            if (isMovingRight) {
+                velx = velocity;
+            }
+            super.tick(deltaTime);
+    }  
+    
     public void keyPressed(KeyEvent k) {
         switch (k.getKeyCode()) {
             case 87:
-                vely = velocity;
+                isMovingUp = true;
                 break;
             
             case 65:
-                velx = velocity * -1;
+                isMovingLeft = true;
                 break;
             
             case 83:
-                vely = velocity * -1;
+                isMovingDown = true;
                 break;
             
             case 68:
-                velx = velocity;
+                isMovingRight = true;
                 break;
         }
-    }     
+    }
     
     public void keyReleased(KeyEvent k) {
         switch (k.getKeyCode()) {
             case 87:
-                vely = 0;
+                isMovingUp = false;
                 break;
             
             case 65:
-                velx = 0;
+                isMovingLeft = false;
                 break;
             
             case 83:
-                vely = 0;
+                isMovingDown = false;
                 break;
             
             case 68:
-                velx = 0;
+                isMovingRight = false;
                 break;
         }
     }     
