@@ -37,7 +37,7 @@ public class Level_1 extends Board
     protected void loop() 
     {        
         while(playing) {
-              timeSinceLastTick = System.nanoTime() / 1000;
+              timeSinceLastTick = System.nanoTime() / 1000000000;
               deltaTime = timeSinceLastTick - oldTimeSinceLastTick;
               oldTimeSinceLastTick = timeSinceLastTick;
               
@@ -54,11 +54,11 @@ public class Level_1 extends Board
               }
               
               if (player.x > width) {
-                  player.x = (float)width;
+                  player.x = (float)width - player.width;
               }
               
               if (player.y > height) {
-                  player.y = (float)height;
+                  player.y = (float)height - player.height;
               }
               
               repaint(); //do this last
@@ -67,7 +67,7 @@ public class Level_1 extends Board
     
     protected void initBoard() {
         player = new Player(ImageLoader.loadImage("kanye.png"), (float)width / 2, (float)height / 2, 20, 20);
-        player.setVelocity(5);
+        player.setVelocity(20);
         super.initBoard();
     }
     
