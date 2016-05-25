@@ -48,7 +48,7 @@ public abstract class Board extends JPanel
     protected void loop() 
     {        
         while(playing) {
-              timeSinceLastTick = System.currentTimeMillis() / 1000;
+              timeSinceLastTick = System.nanoTime() / 1000000000;
               deltaTime = timeSinceLastTick - oldTimeSinceLastTick;
               oldTimeSinceLastTick = timeSinceLastTick;
               

@@ -22,7 +22,7 @@ public class Enemy extends GameObject
     }
     
     private void fire(Direction d) {
-        bullets.add(new Projectile(image, x, y, width, length, d));
+        bullets.add(new Projectile(image, x, y, width, height, d));
     }
     
     private Direction calculateDirection() {

@@ -16,7 +16,7 @@ public class GameObject
     //keep track of all active GameObject instances
     private static ArrayList<GameObject> objects;
     
-    protected int length;
+    protected int height;
     protected int width;
     
     // xy position of object
@@ -34,14 +34,14 @@ public class GameObject
     /**
      * Constructor for objects of class GameObject
      */
-    public GameObject(Image image, float x, float y, int w, int l)
+    public GameObject(Image image, float x, float y, int w, int h)
     {
         // initialise instance variables
         this.x = x;
         this.y = y;
         
         width = w;
-        length = l;
+        height = h;
         
         this.image = image;
         
@@ -60,7 +60,7 @@ public class GameObject
         x = Math.round(this.x);
         y = Math.round(this.y);
         
-        g.drawImage(image, x, y, length, width, pane);
+        g.drawImage(image, x, y, height, width, pane);
     }
     
     public Rectangle getBounds() {
@@ -71,7 +71,7 @@ public class GameObject
         
         //truncated bounds are for truncating clowns
         
-        return new Rectangle(x, y, width, length);
+        return new Rectangle(x, y, width, height);
     }
     
     public void setVelocity(float v) {
