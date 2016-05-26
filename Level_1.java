@@ -18,7 +18,7 @@ public class Level_1 extends Board implements ActionListener
         width = screenSize.getWidth();
         height = screenSize.getHeight();
         setPreferredSize(screenSize);
-        timer = new Timer(1, this);
+        timer = new Timer(10, this);
         timer.start();
     }
     
@@ -69,8 +69,8 @@ public class Level_1 extends Board implements ActionListener
     } 
     
     protected void initBoard() {
-        player = new Player(ImageLoader.loadImage("kanye.png"), (float)width / 2, (float)height / 2, 80, 50);
-        player.setVelocity(10);
+        player = new Player(ImageLoader.loadImage("kanye.png"), (float)width / 2, (float)height / 2, 80, 56);
+        player.setVelocity(20);
         super.initBoard();
     }
     
