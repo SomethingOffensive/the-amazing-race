@@ -81,10 +81,12 @@ public abstract class Board extends JPanel
     
     public void keyReleased(KeyEvent k) {
         player.keyReleased(k);
+        System.out.println("key released");
     }
         
     public void keyPressed(KeyEvent k) {
         player.keyPressed(k);
+        System.out.println("key pressed");
     }
     
     public void keyTyped(KeyEvent k) {
