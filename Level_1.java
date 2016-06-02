@@ -63,6 +63,7 @@ public class Level_1 extends Board implements ActionListener
               newLiberal.moveToTarget(player);
               
               enemies.add(newLiberal);
+              timeSinceLastSpawn = 0;
           }
           
           for (Liberal enemy : enemies) {
