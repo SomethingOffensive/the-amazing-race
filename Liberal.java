@@ -26,5 +26,13 @@ public class Liberal extends Enemy
         
         velx = (float)Math.cos(angle) * velocity;
         vely = (float)Math.sin(angle) * velocity;
+        
+        if (target.x < this.x) {
+            velx = velx * -1;
+        }
+            
+        if (target.y > this.y) {
+            vely = vely * -1;
+        }
     }
 }
