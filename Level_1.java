@@ -9,7 +9,7 @@ public class Level_1 extends Board implements ActionListener
 {
     private final int enemyTimer = 100;
     private final int DELAY = 1;
-    
+    private final Point enemySize = new Point(56,80);
     private int timeSinceLastSpawn;
     
     private String boardFileName = "title_screen.png";
@@ -66,7 +66,7 @@ public class Level_1 extends Board implements ActionListener
           }
           
           for (Liberal enemy : enemies) {
-              if (enemy.x < - 56 || enemy.y < - 80 || enemy.x > width + 56|| enemy.y > height + 80) {
+              if (enemy.x < - enemySize.x || enemy.y < - enemySize.y || enemy.x > width + enemySize.x|| enemy.y > height + enemySize.y) {
                   newEnemies.remove(enemy);
                   Registry.remove(enemy);
               }
@@ -97,14 +97,14 @@ public class Level_1 extends Board implements ActionListener
     } 
     
     protected void initBoard() {
-        player = new Player(ImageLoader.loadImage("kanye.png"), (float)width / 2, (float)height / 2, 80, 56);
+        player = new Player(ImageLoader.loadImage("kanye.png"), (float)width / 2, (float)height / 2, (int)enemySize.y, (int)enemySize.x);
         player.setVelocity(20);
         
         //Liberal baddie = new Liberal(ImageLoader.loadImage("kanye.png"), (float)width / 2, 0, 40, 28);
         //baddie.setVelocity(30);
         //baddie.moveToTarget(player);
         enemies = new ArrayList<Liberal>();
-        enemies.add(new Liberal(ImageLoader.loadImage("student_1.png"), (float)width / 2, 0, 80, 56));
+        enemies.add(new Liberal(ImageLoader.loadImage("student_1.png"), (float)width / 2, 0, (int)enemySize.y, (int)enemySize.x));
         super.initBoard();
 
     }
