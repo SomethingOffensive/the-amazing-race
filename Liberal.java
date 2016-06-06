@@ -22,11 +22,6 @@ public class Liberal extends Enemy
         float dx = x - target.x;
         float dy = y - target.y;
         
-        double angle = Math.atan(dy/dx);
-        
-        velx = (float)Math.cos(angle) * velocity;
-        vely = (float)Math.sin(angle) * velocity;
-        
         double sep = Math.sqrt(dx * dx + dy * dy);        
         double scale = velocity / sep;
         
