@@ -7,7 +7,9 @@ import java.util.*;
 
 public class Level_1 extends Board implements ActionListener
 {
-    private final int enemyTimer = 100;
+    private final Image kanyeImage = ImageLoader.loadImage("kanye.png");
+    private final Image[] liberalImages = {ImageLoader.loadImage("student_1.png"), ImageLoader.loadImage("student_2.png")};
+    private final int enemyTimer = 10;
     private final int DELAY = 1;
     private final Point enemySize = new Point(56,80);
     private int timeSinceLastSpawn;
@@ -27,6 +29,7 @@ public class Level_1 extends Board implements ActionListener
         height = screenSize.getHeight();
         setPreferredSize(screenSize);
         timer = new javax.swing.Timer(DELAY, this);
+        initBoard();
         timer.start();
     }
     
@@ -58,7 +61,7 @@ public class Level_1 extends Board implements ActionListener
           timeSinceLastSpawn += DELAY;
           
           if (timeSinceLastSpawn + rand.nextInt(40) - 20 >= enemyTimer) {
-              Liberal newLiberal = new Liberal(ImageLoader.loadImage("student_1.png"), rand.nextInt((int)width - 28) + 1, 0, 80, 56);
+              Liberal newLiberal = new Liberal(liberalImages[rand.nextInt(liberalImages.length)], rand.nextInt((int)width - 28) + 1, 0, 80, 56);
               newLiberal.setVelocity(30);
               newLiberal.moveToTarget(player);
               
@@ -66,13 +69,15 @@ public class Level_1 extends Board implements ActionListener
               timeSinceLastSpawn = 0;
           }
           
-          for (Liberal enemy : enemies) {
-              if (enemy.x < - enemySize.x || enemy.y < - enemySize.y || enemy.x > width + enemySize.x|| enemy.y > height + enemySize.y) {
-                  newEnemies.remove(enemy);
-                  Registry.remove(enemy);
+          if (!enemies.isEmpty()) {
+              for (Liberal enemy : enemies) {
+                  if (enemy.x < - enemySize.x || enemy.y < - enemySize.y || enemy.x > width + enemySize.x|| enemy.y > height + enemySize.y) {
+                      newEnemies.remove(enemy);
+                      Registry.remove(enemy);
+                  }
+                  
               }
-              
-          }
+        }
           enemies = newEnemies;
           enemies.trimToSize();
           Registry.tickAll(deltaTime);
