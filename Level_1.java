@@ -91,17 +91,28 @@ public class Level_1 extends Board implements ActionListener
               player.y = 0;
           }
           
-          if (player.x > width) {
+          if (player.x > width - player.width) {
               player.x = (float)width - player.width;
           }
           
-          if (player.y > height) {
+          if (player.y > height - player.height) {
               player.y = (float)height - player.height;
           }
           
           repaint(); //do this last
  
     } 
+    
+    private void checkCollisions() {
+        Rectangle playerCollider = player.getBounds();
+        for (Liberal enemy : enemies) {
+            if (enemy.getBounds().intersects(playerCollider)) {
+                playing = false;
+                didWin = false;
+                System.out.println("BAM! Kanye killed by" + enemy);
+            }
+        }
+    }
     
     protected void initBoard() {
         player = new Player(ImageLoader.loadImage("kanye.png"), (float)width / 2, (float)height / 2, (int)enemySize.y, (int)enemySize.x);
