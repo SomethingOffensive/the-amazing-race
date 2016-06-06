@@ -23,7 +23,6 @@ public class Game
         frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
-        level1.doLevel();
     }
     
     static class PlayerInputListener implements KeyListener 

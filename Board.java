@@ -35,7 +35,6 @@ public abstract class Board extends JPanel
     }
     
     public void doLevel() {
-        initBoard();
         loop();
         if (didWin) {
             playerWin();
