@@ -8,7 +8,8 @@ import java.util.*;
 public class Level_1 extends Board implements ActionListener
 {
     private final Image kanyeImage = ImageLoader.loadImage("kanye.png");
-    private final Image[] liberalImages = {ImageLoader.loadImage("student_1.png"), ImageLoader.loadImage("student_2.png")};
+    private final Image[] liberalImages = {ImageLoader.loadImage("student_1.png"), ImageLoader.loadImage("student_2.png"),ImageLoader.loadImage("student_3.png"), ImageLoader.loadImage("420_mark.png")};
+    private final Image[] Kanye_Albums = {ImageLoader.loadImage("skanye_bear.jpeg"), ImageLoader.loadImage("kanye_graduation.jpeg"),ImageLoader.loadImage("kanye_Late_registration.jpeg"), ImageLoader.loadImage("kanye_pablo.jpeg"),ImageLoader.loadImage("kanye_yeezus.jpeg"), ImageLoader.loadImage("kanye_808s.png")};
     private final int enemyTimer = 10;
     private final int DELAY = 1;
     private final Point enemySize = new Point(56,80);
