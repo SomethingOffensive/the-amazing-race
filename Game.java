@@ -23,12 +23,6 @@ public class Game
         frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
-        while (level1.playing) {
-            //this space intentionally left blank
-        }
-        if (!level1.didWin) {
-        
-        }
     }
     
     static class PlayerInputListener implements KeyListener 

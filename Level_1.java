@@ -8,8 +8,8 @@ import java.util.*;
 public class Level_1 extends Board implements ActionListener
 {
     private final Image kanyeImage = ImageLoader.loadImage("kanye.png");
-    private final Image[] liberalImages = {ImageLoader.loadImage("student_1.png"), ImageLoader.loadImage("student_2.png")};
-    
+    private final Image[] liberalImages = {ImageLoader.loadImage("student_1.png"), ImageLoader.loadImage("student_2.png"),ImageLoader.loadImage("student_3.png"), ImageLoader.loadImage("420_mark.png")};
+    private final Image[] Kanye_Albums = {ImageLoader.loadImage("skanye_bear.jpeg"), ImageLoader.loadImage("kanye_graduation.jpeg"),ImageLoader.loadImage("kanye_Late_registration.jpeg"), ImageLoader.loadImage("kanye_pablo.jpeg"),ImageLoader.loadImage("kanye_yeezus.jpeg"), ImageLoader.loadImage("kanye_808s.png")};
     private final int enemyTimer = 10;
     private final int DELAY = 1;
     private final Point enemySize = new Point(56,80);
@@ -78,12 +78,9 @@ public class Level_1 extends Board implements ActionListener
                   }
                   
               }
-          }
+        }
           enemies = newEnemies;
           enemies.trimToSize();
-          
-          checkCollisions();
-          
           Registry.tickAll(deltaTime);
           
           if (player.x < 0) {
@@ -94,11 +91,11 @@ public class Level_1 extends Board implements ActionListener
               player.y = 0;
           }
           
-          if (player.x > width - player.width) {
+          if (player.x > width) {
               player.x = (float)width - player.width;
           }
           
-          if (player.y > height - player.height) {
+          if (player.y > height) {
               player.y = (float)height - player.height;
           }
           
@@ -106,16 +103,6 @@ public class Level_1 extends Board implements ActionListener
  
     } 
     
-    private void checkCollisions() {
-        Rectangle playerCollider = player.getBounds();
-        for (Liberal enemy : enemies) {
-            
-            if (playerCollider.intersects(enemy.getBounds())) {
-                playing = false;
-                didWin = false;
-            }
-        }
-    }
     protected void initBoard() {
         player = new Player(ImageLoader.loadImage("kanye.png"), (float)width / 2, (float)height / 2, (int)enemySize.y, (int)enemySize.x);
         player.setVelocity(20);
