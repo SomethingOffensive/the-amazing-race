@@ -13,6 +13,9 @@ public class Level_1 extends Board implements ActionListener
     private final int enemyTimer = 10;
     private final int DELAY = 1;
     private final Point enemySize = new Point(56,80);
+    private final int KANYE_SPEED = 20;
+    private final int LIBERAL_SPEED = 30;
+    
     private int timeSinceLastSpawn;
     
     private String boardFileName = "title_screen.png";
@@ -63,7 +66,7 @@ public class Level_1 extends Board implements ActionListener
           
           if (timeSinceLastSpawn + rand.nextInt(40) - 20 >= enemyTimer) {
               Liberal newLiberal = new Liberal(liberalImages[rand.nextInt(liberalImages.length)], rand.nextInt((int)width - 28) + 1, 0, 80, 56);
-              newLiberal.setVelocity(30);
+              newLiberal.setVelocity(LIBERAL_SPEED);
               newLiberal.moveToTarget(player);
               
               enemies.add(newLiberal);
@@ -81,6 +84,9 @@ public class Level_1 extends Board implements ActionListener
         }
           enemies = newEnemies;
           enemies.trimToSize();
+          
+          checkCollisions();
+          
           Registry.tickAll(deltaTime);
           
           if (player.x < 0) {
@@ -116,7 +122,7 @@ public class Level_1 extends Board implements ActionListener
     
     protected void initBoard() {
         player = new Player(ImageLoader.loadImage("kanye.png"), (float)width / 2, (float)height / 2, (int)enemySize.y, (int)enemySize.x);
-        player.setVelocity(20);
+        player.setVelocity(KANYE_SPEED);
         
         //Liberal baddie = new Liberal(ImageLoader.loadImage("kanye.png"), (float)width / 2, 0, 40, 28);
         //baddie.setVelocity(30);
