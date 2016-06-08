@@ -5,7 +5,9 @@ import java.awt.event.*;
 
 public class Player extends GameObject
 {
+    private final Image[] Kanye_Albums = {ImageLoader.loadImage("kanye_bear.jpg"), ImageLoader.loadImage("kanye_graduation.jpg"),ImageLoader.loadImage("kanye_Late_registration.jpg"), ImageLoader.loadImage("kanye_pablo.jpg"),ImageLoader.loadImage("kanye_yeezus.jpg"), ImageLoader.loadImage("kanye_808s.png")};
     private boolean isMovingLeft, isMovingRight, isMovingUp, isMovingDown;
+    private ArrayList<Projectile> bullets;
     
     public Player(Image image, float x, float y, int w, int l)
     {
@@ -32,6 +34,9 @@ public class Player extends GameObject
         super.tick(deltaTime);
     }  
     
+    private void fire() {
+        java.awt.Point mouseCoords = MouseInfo.getPointerInfo().getLocation();
+    }
     public void keyPressed(KeyEvent k) {
         
         switch (k.getKeyCode()) {
