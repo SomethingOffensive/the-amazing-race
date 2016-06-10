@@ -91,16 +91,12 @@ public class Player extends GameObject
     }
     
     public void mousePressed(MouseEvent e) {
-<<<<<<< HEAD
+
         if (!hasFiredThisClick) {
             fire();
             hasFiredThisClick = true;
         }    
     }
-=======
-
-    }    
->>>>>>> e372dec4ca3d2ff61245f49280cbc2dc6b7883dc
     
     public void mouseExited(MouseEvent e) {
         
