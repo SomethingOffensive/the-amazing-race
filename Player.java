@@ -7,6 +7,7 @@ public class Player extends GameObject
 {
     private final Image[] Kanye_Albums = {ImageLoader.loadImage("kanye_bear.jpg"), ImageLoader.loadImage("kanye_graduation.jpg"),ImageLoader.loadImage("kanye_Late_registration.jpg"), ImageLoader.loadImage("kanye_pablo.jpg"),ImageLoader.loadImage("kanye_yeezus.jpg"), ImageLoader.loadImage("kanye_808s.png")};
     private boolean isMovingLeft, isMovingRight, isMovingUp, isMovingDown;
+    private boolean hasFiredThisClick;
     private ArrayList<Projectile> bullets;
     
     public Player(Image image, float x, float y, int w, int l)
@@ -87,8 +88,11 @@ public class Player extends GameObject
     }
     
     public void mousePressed(MouseEvent e) {
-        
-    }    
+        if (!hasFiredThisClick) {
+            fire();
+            hasFiredThisClick = true;
+        }    
+    }
     
     public void mouseExited(MouseEvent e) {
         
@@ -99,7 +103,7 @@ public class Player extends GameObject
     }
 
     public void mouseReleased(MouseEvent e) {
-        
+        hasFiredThisClick = false;
     }
     
     public void keyTyped(KeyEvent k) {

@@ -66,8 +66,8 @@ public class GameObject
     public Rectangle getBounds() {
         
         // round instead of casting to prevent truncation, we DEFINITELY don't want truncated bounds
-        int x = Math.round(this.x);
-        int y = Math.round(this.y);
+        int x = (int)this.x;
+        int y = (int)this.y;
         
         //truncated bounds are for truncating clowns
         

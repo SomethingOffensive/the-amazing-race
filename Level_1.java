@@ -59,7 +59,7 @@ public class Level_1 extends Board implements ActionListener
           deltaTime = timeSinceLastTick - oldTimeSinceLastTick;
           oldTimeSinceLastTick = timeSinceLastTick;
           
-          ArrayList<Liberal> newEnemies = new ArrayList<Liberal>();
+          ArrayList<Liberal> newEnemies;
           
           timeSinceLastSpawn += DELAY;
           
@@ -73,6 +73,7 @@ public class Level_1 extends Board implements ActionListener
           }
           
           if (!enemies.isEmpty()) {
+              newEnemies = new ArrayList<Liberal>(enemies);
               for (Liberal enemy : enemies) {
                   if (enemy.x < - enemySize.x || enemy.y < - enemySize.y || enemy.x > width + enemySize.x|| enemy.y > height + enemySize.y) {
                       newEnemies.remove(enemy);
@@ -80,8 +81,8 @@ public class Level_1 extends Board implements ActionListener
                   }
                   
               }
+              enemies = new ArrayList<Liberal>(newEnemies);
         }
-          enemies = newEnemies;
           enemies.trimToSize();
           
           checkCollisions();
