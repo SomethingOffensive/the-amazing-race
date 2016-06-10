@@ -18,8 +18,10 @@ public class Game
     {
         frame = new JFrame("The Amazing Race");
         frame.addKeyListener(new PlayerInputListener());
-        level1 = new Level_1();
-        frame.getContentPane().add(level1);
+        
+        TitleScreen title = new TitleScreen();
+        frame.getContentPane().add(title);
+        
         frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
