@@ -7,6 +7,7 @@ public class Game
 {
     public static int score;
     public static Board[] levels;
+    public static TitleScreen titlescreen;
     public static Board level1;
     public static JFrame frame;
     
@@ -19,9 +20,10 @@ public class Game
     {
         frame = new JFrame("The Amazing Race");
         frame.addKeyListener(new PlayerInputListener());
+        frame.addMouseListener(new PlayerMouseListener());
         
-        TitleScreen title = new TitleScreen();
-        frame.getContentPane().add(title);
+        TitleScreen titlescreen = new TitleScreen();
+        frame.getContentPane().add(titlescreen);
         
         frame.setResizable(false);
         frame.pack();
@@ -46,6 +48,7 @@ public class Game
     static class PlayerMouseListener implements MouseListener
     {
         public void mouseClicked(MouseEvent e) { 
+            titlescreen.mouseClicked(e);
             level1.mouseClicked(e);
         }
         public void mouseEntered(MouseEvent e){
