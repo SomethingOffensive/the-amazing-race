@@ -55,7 +55,7 @@ public class Game
         
          }
         public void mousePressed(MouseEvent e) {
-           
+           level1.mousePressed(e);
         }
         public void mouseReleased(MouseEvent e) {
         

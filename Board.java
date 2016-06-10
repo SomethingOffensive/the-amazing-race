@@ -78,8 +78,8 @@ public abstract class Board extends JPanel
     protected void endLevel(int score) {
         
     }
-    public void mouseClicked(MouseEvent e) {
-        player.mouseClicked(e);
+    public void mousePressed(MouseEvent e) {
+        player.mousePressed(e);
     }
     public void keyReleased(KeyEvent k) {
         player.keyReleased(k);
