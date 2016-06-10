@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.util.*;
 import javax.swing.JPanel;
@@ -84,15 +85,22 @@ public class Player extends GameObject
     }     
     
     public void mouseClicked(MouseEvent e) {
-        
+        int Mouse_x = MouseInfo.getPointerInfo().getLocation().x ;
+        int Mouse_y = MouseInfo.getPointerInfo().getLocation().y ;
+        System.out.println("(" + MouseInfo.getPointerInfo().getLocation().x + ", " + MouseInfo.getPointerInfo().getLocation().y + ")");
     }
     
     public void mousePressed(MouseEvent e) {
+<<<<<<< HEAD
         if (!hasFiredThisClick) {
             fire();
             hasFiredThisClick = true;
         }    
     }
+=======
+
+    }    
+>>>>>>> e372dec4ca3d2ff61245f49280cbc2dc6b7883dc
     
     public void mouseExited(MouseEvent e) {
         

@@ -1,3 +1,4 @@
+import java.awt.event.MouseEvent;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -18,8 +19,10 @@ public class Game
     {
         frame = new JFrame("The Amazing Race");
         frame.addKeyListener(new PlayerInputListener());
-        level1 = new Level_1();
-        frame.getContentPane().add(level1);
+        
+        TitleScreen title = new TitleScreen();
+        frame.getContentPane().add(title);
+        
         frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
@@ -36,6 +39,25 @@ public class Game
         }
         
         public void keyTyped(KeyEvent k) {
+        
+        }
+    }
+    
+    static class PlayerMouseListener implements MouseListener
+    {
+        public void mouseClicked(MouseEvent e) { 
+            level1.mouseClicked(e);
+        }
+        public void mouseEntered(MouseEvent e){
+        
+         }
+        public void mouseExited(MouseEvent e) {
+        
+         }
+        public void mousePressed(MouseEvent e) {
+           
+        }
+        public void mouseReleased(MouseEvent e) {
         
         }
     }
