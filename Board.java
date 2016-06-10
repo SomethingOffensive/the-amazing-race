@@ -1,3 +1,4 @@
+import java.awt.event.MouseEvent;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
@@ -77,7 +78,9 @@ public abstract class Board extends JPanel
     protected void endLevel(int score) {
         
     }
-    
+    public void mouseClicked(MouseEvent e) {
+        player.mouseClicked(e);
+    }
     public void keyReleased(KeyEvent k) {
         player.keyReleased(k);
         System.out.println("key released");
