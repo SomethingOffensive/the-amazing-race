@@ -59,7 +59,7 @@ public class TitleScreen extends Board implements MouseListener
     public void mouseClicked(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
-        
+        System.out.println(x + " " + y);
         if (x >= sButtonX && x <= sButtonX + 450 && y >= sButtonY && y<= sButtonY + 80) {
             playPressed = true;
             System.out.println("START PRESSED");
