@@ -9,7 +9,7 @@ public class Level_1 extends Board implements ActionListener
 {
     private final Image kanyeImage = ImageLoader.loadImage("kanye.png");
     private final Image[] liberalImages = {ImageLoader.loadImage("student_1.png"), ImageLoader.loadImage("student_2.png"),ImageLoader.loadImage("student_3.png"), ImageLoader.loadImage("420_mark.png")};
-    private final int enemyTimer = 10;
+    private final int enemyTimer = 20;
     private final int DELAY = 1;
     private final Point enemySize = new Point(56,80);
     private final int KANYE_SPEED = 20;
@@ -32,8 +32,6 @@ public class Level_1 extends Board implements ActionListener
         height = screenSize.getHeight();
         setPreferredSize(screenSize);
         timer = new javax.swing.Timer(DELAY, this);
-        initBoard();
-        timer.start();
     }
     
     @Override
@@ -75,14 +73,21 @@ public class Level_1 extends Board implements ActionListener
           if (!enemies.isEmpty()) {
               newEnemies = new ArrayList<Liberal>(enemies);
               for (Liberal enemy : enemies) {
-                  if (enemy.x < - enemySize.x || enemy.y < - enemySize.y || enemy.x > width + enemySize.x|| enemy.y > height + enemySize.y) {
+                  if (enemy.x < 0 - enemySize.x || enemy.y < 0 - enemySize.y || enemy.x > width + enemySize.x|| enemy.y > height + enemySize.y) {
                       newEnemies.remove(enemy);
                       Registry.remove(enemy);
                   }
                   
               }
               enemies = new ArrayList<Liberal>(newEnemies);
-        }
+          }
+          
+          for (Projectile b : player.getBullets()) {
+              if (b.x < 0 - b.width || b.y < 0 - b.height || b.x > width + b.width|| b.y > height + b.height) {
+                  player.removeBullet(b);
+                  Registry.remove(b);
+              }
+          }
           enemies.trimToSize();
           
           checkCollisions();
@@ -111,14 +116,25 @@ public class Level_1 extends Board implements ActionListener
     
     private void checkCollisions() {
         Rectangle playerCollider = player.getBounds();
+        ArrayList<Liberal> newEnemies = new ArrayList<Liberal>(enemies);
         for (Liberal enemy : enemies) {
+            for (Projectile bullet : player.getBullets()) {
+                if (bullet.getBounds().intersects(enemy.getBounds())) {
+                    player.removeBullet(bullet);
+                    Registry.remove(bullet);
+                    
+                    newEnemies.remove(enemy);
+                    Registry.remove(enemy);
+                }
+            }
             if (enemy.getBounds().intersects(playerCollider)) {
                 playing = false;
                 didWin = false;
-                System.out.println("BAM! Kanye killed by" + enemy);
+                System.out.println("BAM! Kanye killed by " + enemy);
             }
         }
-    }
+        enemies = new ArrayList<Liberal>(newEnemies);
+    }    
     
     protected void initBoard() {
         player = new Player(ImageLoader.loadImage("kanye.png"), (float)width / 2, (float)height / 2, (int)enemySize.y, (int)enemySize.x);
@@ -128,11 +144,10 @@ public class Level_1 extends Board implements ActionListener
         //baddie.setVelocity(30);
         //baddie.moveToTarget(player);
         enemies = new ArrayList<Liberal>();
-        enemies.add(new Liberal(ImageLoader.loadImage("student_1.png"), (float)width / 2, 0, (int)enemySize.y, (int)enemySize.x));
+        //enemies.add(new Liberal(ImageLoader.loadImage("student_1.png"), (float)width / 2, 0, (int)enemySize.y, (int)enemySize.x));
         super.initBoard();
-
+        timer.start();
     }
-    
     public void actionPerformed(ActionEvent a) {
         loop();
     }

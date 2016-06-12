@@ -6,14 +6,17 @@ import java.awt.event.*;
 
 public class Player extends GameObject
 {
-    private final Image[] Kanye_Albums = {ImageLoader.loadImage("kanye_bear.jpg"), ImageLoader.loadImage("kanye_graduation.jpg"),ImageLoader.loadImage("kanye_Late_registration.jpg"), ImageLoader.loadImage("kanye_pablo.jpg"),ImageLoader.loadImage("kanye_yeezus.jpg"), ImageLoader.loadImage("kanye_808s.png")};
+    private final Image[] kanyeAlbums = {ImageLoader.loadImage("kanye_bear.jpg"), ImageLoader.loadImage("kanye_graduation.jpg"),ImageLoader.loadImage("kanye_Late_registration.jpg"), ImageLoader.loadImage("kanye_pablo.jpg"),ImageLoader.loadImage("kanye_yeezus.jpg"), ImageLoader.loadImage("kanye_808s.png")};
     private boolean isMovingLeft, isMovingRight, isMovingUp, isMovingDown;
     private boolean hasFiredThisClick;
+    
     private ArrayList<Projectile> bullets;
+    private final int projSize = 35;
     
     public Player(Image image, float x, float y, int w, int l)
     {
         super(image, x, y, w, l);
+        bullets = new ArrayList<Projectile>();
     }       
     
     public void tick(float deltaTime) {
@@ -37,8 +40,24 @@ public class Player extends GameObject
     }  
     
     private void fire() {
+        Random rand = new Random();
+        
         java.awt.Point mouseCoords = MouseInfo.getPointerInfo().getLocation();
+        Projectile bullet = new Projectile(kanyeAlbums[rand.nextInt(kanyeAlbums.length)], x, y, projSize, projSize, Direction.UP);
+        bullet.setVelocity(40);
+        bullet.setTarget(mouseCoords.x, mouseCoords.y);
+        bullet.abortTarget();
+        bullets.add(bullet);
     }
+    
+    public ArrayList<Projectile> getBullets() {
+        return new ArrayList<Projectile>(bullets);
+    }
+    
+    public void removeBullet(Projectile bullet)  {
+        bullets.remove(bullet);
+    }
+    
     public void keyPressed(KeyEvent k) {
         
         switch (k.getKeyCode()) {
@@ -85,9 +104,7 @@ public class Player extends GameObject
     }     
     
     public void mouseClicked(MouseEvent e) {
-        int Mouse_x = MouseInfo.getPointerInfo().getLocation().x ;
-        int Mouse_y = MouseInfo.getPointerInfo().getLocation().y ;
-        System.out.println("(" + MouseInfo.getPointerInfo().getLocation().x + ", " + MouseInfo.getPointerInfo().getLocation().y + ")");
+
     }
     
     public void mousePressed(MouseEvent e) {

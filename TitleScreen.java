@@ -11,10 +11,9 @@ public class TitleScreen extends Board implements MouseListener
     private double width;
     private double height;
    
-    int sButtonX;
-    int sButtonY; 
-    int qButtonX;
-    int qButtonY;
+    private int sButtonX, sButtonY, qButtonX, qButtonY;
+    private Rectangle startButton;
+    private Rectangle quitButton;
     
     public boolean playPressed = false;
     public boolean quitPressed = false;
@@ -25,6 +24,14 @@ public class TitleScreen extends Board implements MouseListener
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         width = screenSize.getWidth();
         height = screenSize.getHeight();
+        
+        sButtonX = (int)width / 2 -150;
+        sButtonY = (int)height / 2 -20;
+        qButtonX = sButtonX;
+        qButtonY = (int)height / 2 + 70;
+        
+        startButton = new Rectangle(sButtonX, sButtonY, 300, 60);
+        quitButton = new Rectangle(qButtonX, qButtonY, 300, 60);
         
         setPreferredSize(screenSize);    
         
@@ -43,10 +50,6 @@ public class TitleScreen extends Board implements MouseListener
 
         g.drawImage(background,0,0,(int)width,(int)height,this);
        
-        sButtonX = (int)width / 2 -150;
-        sButtonY = (int)height / 2 -20;
-        qButtonX = sButtonX;
-        qButtonY = (int)height / 2 + 70;
         
         g.setColor(Color.gray);
         g.fillRect(sButtonX, sButtonY, 300, 60);  
@@ -54,15 +57,30 @@ public class TitleScreen extends Board implements MouseListener
         
 
         super.doDrawing(g);
+    }
+    
+    public boolean noButtonHasBeenPressed() {
+        if (!playPressed && !quitPressed) {
+            return true;
+        }
+        else if (playPressed || quitPressed) {
+            return false;
         }
         
+        return true;
+    }
     public void mouseClicked(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
-        System.out.println(x + " " + y);
-        if (x >= sButtonX && x <= sButtonX + 450 && y >= sButtonY && y<= sButtonY + 80) {
+        System.out.println(x + "," + y);
+        if (startButton.contains(new java.awt.Point(x,y))) {
             playPressed = true;
             System.out.println("START PRESSED");
+        }
+        
+        if (quitButton.contains(new java.awt.Point(x,y))) {
+            quitPressed = true;
+            System.out.println("QUIT PRESSED");
         }
     }
     

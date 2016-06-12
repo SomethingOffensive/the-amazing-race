@@ -19,8 +19,6 @@ public class Projectile extends GameObject
     private boolean first;
     private Direction direction;
     
-    private double angle;
-    
     /**
      * Constructor for objects of class Projectile
      */
@@ -38,16 +36,19 @@ public class Projectile extends GameObject
         target.x = x;
         target.y = y;
         targeting = true;
+        calculateVelocity();
     }
     
     public void setTarget(GameObject targetObj) {
         this.targetObj = targetObj;
         targeting = true;
+        calculateVelocity();
     }
     
     public void abortTarget() {
         targeting = false;
     }
+    
     private void calculateVelocity() {
 
         if (first) {
@@ -83,18 +84,12 @@ public class Projectile extends GameObject
             
             float dx = x - target.x;
             float dy = y - target.y;
+        
+            double sep = Math.sqrt(dx * dx + dy * dy);        
+            double scale = velocity / sep;
             
-            angle = Math.atan(dy/dx);
-            velx = (float)Math.cos(angle) * velocity;
-            vely = (float)Math.sin(angle) * velocity;
-            
-            if (target.x < this.x) {
-                velx = velx * -1;
-            }
-            
-            if (target.y < this.y) {
-                vely = vely * -1;
-            }
+            velx = dx * (float)scale * -1;
+            vely = dy * (float)scale * -1;
             
         }
         
