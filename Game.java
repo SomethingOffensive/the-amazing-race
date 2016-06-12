@@ -7,9 +7,11 @@ public class Game
 {
     public static int score;
     public static Board[] levels;
-    public static TitleScreen titlescreen;
+    public static TitleScreen title;
     public static Board level1;
     public static JFrame frame;
+    
+    private static boolean waitingForTitleInput = true;
     
     public Game()
     {
@@ -22,12 +24,33 @@ public class Game
         frame.addKeyListener(new PlayerInputListener());
         frame.addMouseListener(new PlayerMouseListener());
         
-        TitleScreen titlescreen = new TitleScreen();
-        frame.getContentPane().add(titlescreen);
+        title = new TitleScreen();
+        level1 = new Level_1();
+        frame.getContentPane().add(title);
         
         frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
+        level1.setVisible(false);
+        while (waitingForTitleInput) {
+            if (title.noButtonHasBeenPressed()) {
+            
+            }
+            
+            else {
+                waitingForTitleInput = false;
+            }
+        }
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(level1);
+
+        title.setVisible(false);
+        level1.setVisible(true);
+        
+        frame.revalidate();
+        frame.setVisible(true);
+        
+        level1.initBoard();
     }
     
     static class PlayerInputListener implements KeyListener 
@@ -48,8 +71,7 @@ public class Game
     static class PlayerMouseListener implements MouseListener
     {
         public void mouseClicked(MouseEvent e) { 
-            titlescreen.mouseClicked(e);
-            level1.mouseClicked(e);
+            title.mouseClicked(e);
         }
         public void mouseEntered(MouseEvent e){
         
@@ -61,7 +83,7 @@ public class Game
             level1.mousePressed(e);
         }
         public void mouseReleased(MouseEvent e) {
-        
+            level1.mouseReleased(e);
         }
     }
 }
