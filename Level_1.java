@@ -15,6 +15,8 @@ public class Level_1 extends Board implements ActionListener
     private final int KANYE_SPEED = 20;
     private final int LIBERAL_SPEED = 30;
     
+    private float score;
+        
     private int timeSinceLastSpawn;
     
     private String boardFileName = "title_screen.png";
@@ -32,6 +34,7 @@ public class Level_1 extends Board implements ActionListener
         height = screenSize.getHeight();
         setPreferredSize(screenSize);
         timer = new javax.swing.Timer(DELAY, this);
+        score = 0;
     }
     
     @Override
@@ -47,7 +50,10 @@ public class Level_1 extends Board implements ActionListener
 
         g.drawImage(background,0,0,(int)width,(int)height,this);
         
-        super.doDrawing(g);
+        super.doDrawing(g); // all sprites get drawn here
+        
+        g.setFont(new Font("Comic Sans", Font.PLAIN, 24));
+        g.drawString("approval: " + Math.round(score) + "%", 8, 28);
         }
    
     protected void loop() 
@@ -125,11 +131,15 @@ public class Level_1 extends Board implements ActionListener
                     
                     newEnemies.remove(enemy);
                     Registry.remove(enemy);
+                    
+                    score += .4;
                 }
             }
             if (enemy.getBounds().intersects(playerCollider)) {
                 playing = false;
                 didWin = false;
+                score -= 10;
+                
                 System.out.println("BAM! Kanye killed by " + enemy);
             }
         }

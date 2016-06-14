@@ -55,8 +55,12 @@ public class TitleScreen extends Board implements MouseListener
         g.fillRect(sButtonX, sButtonY, 300, 60);  
         g.fillRect(qButtonX, qButtonY, 300, 60);
         
+        g.setFont(new Font("Comic Sans", Font.PLAIN, 24));
 
         super.doDrawing(g);
+        
+        g.drawString("Play!", sButtonX + 20, sButtonY + 16);
+        g.drawString("Don't Quit", qButtonX + 20, qButtonY + 16);
     }
     
     public boolean noButtonHasBeenPressed() {
