@@ -19,7 +19,7 @@ public class Level_1 extends Board implements ActionListener
         
     private int timeSinceLastSpawn;
     
-    private String boardFileName = "title_screen.png";
+    private String boardFileName = "level_1b.jpg";
     private double width;
     private double height;
     private javax.swing.Timer timer;
